@@ -12,27 +12,45 @@ class Clock {
     }
 
     printTime() {
-        let formatMins = this.minutes
-        let formatSeconds = this.seconds
-        if (formatMins.length < 2) {
-            formatMins = `0${this.minutes}`
-            let currentTime = `${this.hours}:${formatMins}:${this.seconds}`
-            console.log(currentTime)
-        } else if (formatSeconds.length < 2) {
-            formatSeconds = `0${this.seconds}`
-            let currentTime = `${this.hours}:${this.minutes}:${formatSeconds}`
-            console.log(currentTime)
-        }
+        let currentTime = [this.hours, this.minutes, this.seconds]
+        console.log(currentTime.join(':'))
+
+
+
+        // let formatMins = this.minutes
+        // let formatSeconds = this.seconds
+        // if (formatMins.length < 2) {
+        //     formatMins = `0${this.minutes}`
+        //     let currentTime = `${this.hours}:${formatMins}:${this.seconds}`
+        //     console.log(currentTime)
+        // } else if (formatSeconds.length < 2) {
+        //     formatSeconds = `0${this.seconds}`
+        //     let currentTime = `${this.hours}:${this.minutes}:${formatSeconds}`
+        //     console.log(currentTime)
+        // }
       // Format the time in HH:MM:SS
       // Use console.log to print it.
     }
 
     _tick() {
+      this.seconds += 1;
+      if (this.seconds === 60) {
+        this.seconds = 0;
+        this.minutes += 1;
+      }
+      if (this.minutes === 60) {
+        this.minutes = 0;
+        this.hours += 1;
+      }
+      if (this.hours === 24) {
+        this.hours = 0;
+      }
+      this.printTime();
       // 1. Increment the time by one second.
       // 2. Call printTime.
     }
 }
 
 const clock = new Clock();
-console.log(`${clock.hours}:${clock.minutes}:${clock.seconds}`)
+// console.log(`${clock.hours}:${clock.minutes}:${clock.seconds}`)
 // clock.printTime()
